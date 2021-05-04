@@ -8,13 +8,14 @@ public class yonet : MonoBehaviour
 {
     // Start is called before the first frame update
     int yerl = 0;
-    int top = 15;
-
-
+    int top = 3;
+    int sceneIndex, levelPassed;
 
 
     void Start()
     {
+        Debug.Log(PlayerPrefs.GetInt("LevelPassed"));
+        sceneIndex = PlayerPrefs.GetInt("LevelPassed");
     }
 
 
@@ -23,13 +24,12 @@ public class yonet : MonoBehaviour
         yerl++;
         if (yerl == top)
         {
-            Invoke("loadMainMenu", 1f);
-
-
-
-
+            PlayerPrefs.SetInt("LevelPassed", sceneIndex + 1);
+            levelPassed = levelPassed + PlayerPrefs.GetInt("LevelPassed");
+            SceneManager.LoadScene(levelPassed);
         }
     }
+
 
     void Update()
     {
